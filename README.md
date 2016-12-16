@@ -10,6 +10,22 @@
   * 点击右上角X号，删除选中的图片；
   * 选择9张的话，隐藏加号；不够9张，显示加号；
 
+### 预览item布局
+
+[自定义方形布局](http://blog.csdn.net/future_challenger/article/details/51346476)
+
+
+[MeasureSpec](https://jakkypan.gitbooks.io/trivial/content/measurespeczai_li_jie.html)
+
+```
+ @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        //onMeasure里，width和height都传递widthMeasureSpec，便可以保证为方形
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+    }
+```
+
+
 ## 点击加号进入图片选择界面
 
   * 第一项拍照，通过传入参数来控制；
