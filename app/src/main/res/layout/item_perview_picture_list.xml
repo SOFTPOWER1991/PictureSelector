@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.common.pictureselector.view.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/img_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dadada"
+        android:clickable="true"
+        android:contentDescription="预览图片"
+        android:src="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/img_gif"
+        android:layout_width="30dp"
+        android:layout_height="18dp"
+        android:layout_gravity="right|bottom"
+        android:contentDescription="@string/app_name"
+        android:padding="2dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/gif" />
+
+    <ImageView
+        android:id="@+id/img_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="right|top"
+        android:contentDescription="@string/app_name"
+        android:paddingBottom="4dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_tweet_delete" />
+
+
+</com.common.pictureselector.view.SquareFrameLayout>
