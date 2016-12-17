@@ -1,5 +1,6 @@
 package com.common.pictureselector.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -39,5 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void openPictureSelector() {
         Log.e(MainActivity.class.getSimpleName(), "picture selector open!");
+
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, PictureSelectorActivity.class);
+        startActivity(intent);
     }
 }
