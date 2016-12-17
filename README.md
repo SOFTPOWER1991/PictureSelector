@@ -39,6 +39,19 @@
   * 点击选择图片——> 弹出本机上的相册文件夹
   * 默认显示全部照片，选择某个具体的文件夹后，展示出当前文件夹下的图片来；
 
+### 图片选择器界面的权限申请
+
+* 调用相机权限: *Manifest.permission.CAMERA*
+* 读取外部存储权限：*Manifest.permission.READ_EXTERNAL_STORAGE*
+
+引入第三方权限申请库，简化权限申请:
+
+```
+compile 'pub.devrel:easypermissions:0.2.1'
+```
+
+Github主页：[EasyPermissions](https://github.com/googlesamples/easypermissions)
+
 ### 点击拍照
 
 点击拍照后，调用相机进行拍照；重点是拍照完成后，如何处理？
