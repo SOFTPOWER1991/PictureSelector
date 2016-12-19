@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -14,6 +15,18 @@
         android:background="@color/colorPrimary"
         android:text="插入图片"
         android:textColor="#ffffff" />
+
+
+    <com.common.pictureselector.view.PicturesPreviewRecyclerView
+        android:id="@+id/recycler_images"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btn_insert_picture"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="@dimen/lay_12"
+        android:paddingLeft="@dimen/lay_12"
+        android:paddingRight="@dimen/lay_12"
+        android:paddingTop="@dimen/lay_12" />
 
 
 </RelativeLayout>

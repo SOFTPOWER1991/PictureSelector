@@ -7,14 +7,14 @@
     android:padding="4dp">
 
     <ImageView
-        android:id="@+id/img_preview"
+        android:id="@+id/iv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
         android:contentDescription="预览图片" />
 
     <ImageView
-        android:id="@+id/img_gif"
+        android:id="@+id/iv_is_gif"
         android:layout_width="30dp"
         android:layout_height="18dp"
         android:layout_gravity="right|bottom"
@@ -25,7 +25,7 @@
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/img_delete"
+        android:id="@+id/iv_delete"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="right|top"

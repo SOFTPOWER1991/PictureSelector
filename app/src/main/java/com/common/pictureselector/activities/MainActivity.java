@@ -1,20 +1,30 @@
 package com.common.pictureselector.activities;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import com.common.pictureselector.R;
+import com.common.pictureselector.interf.PublishContract;
+import com.common.pictureselector.view.PicturesPreviewRecyclerView;
 
 /**
- * 图片选择主页面
+ * File Description  : 图片选择器首页
+ *
+ * @author : zhanggeng
+ * @version : v1.0
+ *          **************修订历史*************
+ * @email : zhanggengdyx@gmail.com
+ * @date : 2016/12/17 10:33
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener, PublishContract.View {
 
     private Button btnInsertPic;
+
+    private PicturesPreviewRecyclerView tweetPicturesPreviewer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +33,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         btnInsertPic = (Button) findViewById(R.id.btn_insert_picture);
         btnInsertPic.setOnClickListener(this);
+
+        tweetPicturesPreviewer = (PicturesPreviewRecyclerView) findViewById(R.id.recycler_images);
+
     }
 
     @Override
@@ -40,9 +54,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void openPictureSelector() {
         Log.e(MainActivity.class.getSimpleName(), "picture selector open!");
-
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, PictureSelectorActivity.class);
-        startActivity(intent);
+        tweetPicturesPreviewer.onLoadMoreClick();
     }
+
+
+    @Override
+    public String[] getImages() {
+        return tweetPicturesPreviewer.getPaths();
+    }
+
+    @Override
+    public void setImages(String[] paths) {
+        tweetPicturesPreviewer.set(paths);
+    }
+
+
 }

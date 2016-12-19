@@ -61,12 +61,13 @@
     </RelativeLayout>
 
 
-    <android.support.v7.widget.RecyclerView
+    <com.common.pictureselector.view.PicturesPreviewRecyclerView
         android:id="@+id/rv_pic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/fl_action_btn"
         android:layout_below="@id/rl_title"
+        android:gravity="center"
         android:padding="1dp"
         android:scrollbars="none" />
 
