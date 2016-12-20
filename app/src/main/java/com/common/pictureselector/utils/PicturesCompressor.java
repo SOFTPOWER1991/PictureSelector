@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static com.common.pictureselector.utils.StreamUtils.close;
-import static com.common.pictureselector.utils.StreamUtils.copyFile;
 
 
 @SuppressWarnings("WeakerAccess")
@@ -200,7 +199,7 @@ public final class PicturesCompressor {
 
         // if the in file size <= maxSize, we can copy to savePath
         if (sourceFile.length() <= maxSize) {
-            return copyFile(sourceFile, saveFile);
+            return StreamUtils.copyFile(sourceFile, saveFile);
         }
 
         // create new temp file

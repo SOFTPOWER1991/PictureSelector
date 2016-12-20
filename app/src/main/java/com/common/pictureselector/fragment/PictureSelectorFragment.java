@@ -101,9 +101,9 @@ public class PictureSelectorFragment extends BaseFragment implements PictureSele
     }
 
     @Override
-    protected void initWidget(View view) {
-        mContentView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
-        mContentView.addItemDecoration(new SpaceGridItemDecoration((int) dipToPx(getResources(), 1)));
+    protected void initView(View view) {
+        mContentView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mContentView.addItemDecoration(new SpaceGridItemDecoration((int) dipToPx(getResources(), 2)));
         mImageAdapter = new ImageAdapter(getContext(), this);
         mImageFolderAdapter = new ImageFolderAdapter(getActivity());
         mImageFolderAdapter.setLoader(this);

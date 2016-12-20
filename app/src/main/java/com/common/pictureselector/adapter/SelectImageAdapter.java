@@ -16,11 +16,27 @@ import com.common.pictureselector.interf.PicturesPreviewerItemTouchCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.TweetSelectImageHolder> implements PicturesPreviewerItemTouchCallback.ItemTouchHelperAdapter {
+public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.SelectImageHolder> implements PicturesPreviewerItemTouchCallback.ItemTouchHelperAdapter {
+
     private final int MAX_SIZE = 9;
     private final int TYPE_NONE = 0;
     private final int TYPE_ADD = 1;
+
     private final List<Model> mModels = new ArrayList<>();
+
+    public interface Callback {
+        void onLoadMoreClick();
+
+        RequestManager getImgLoader();
+
+        /**
+         * Called when a view is requesting a start of a drag.
+         *
+         * @param viewHolder The holder of the view to drag.
+         */
+        void onStartDrag(RecyclerView.ViewHolder viewHolder);
+    }
+
     private Callback mCallback;
 
     public SelectImageAdapter(Callback callback) {
@@ -40,10 +56,11 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
     }
 
     @Override
-    public TweetSelectImageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SelectImageHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_perview_picture_list, parent, false);
         if (viewType == TYPE_NONE) {
-            return new TweetSelectImageHolder(view, new TweetSelectImageHolder.HolderListener() {
+            return new SelectImageHolder(view, new SelectImageHolder.HolderListener() {
                 @Override
                 public void onDelete(Model model) {
                     Callback callback = mCallback;
@@ -60,7 +77,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
                 }
 
                 @Override
-                public void onDrag(TweetSelectImageHolder holder) {
+                public void onDrag(SelectImageHolder holder) {
                     Callback callback = mCallback;
                     if (callback != null) {
                         // Start a drag whenever the handle view it touched
@@ -69,7 +86,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
                 }
             });
         } else {
-            return new TweetSelectImageHolder(view, new View.OnClickListener() {
+            return new SelectImageHolder(view, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Callback callback = mCallback;
@@ -82,7 +99,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
     }
 
     @Override
-    public void onBindViewHolder(final TweetSelectImageHolder holder, int position) {
+    public void onBindViewHolder(final SelectImageHolder holder, int position) {
         int size = mModels.size();
         if (size >= MAX_SIZE || size != position) {
             Model model = mModels.get(position);
@@ -91,7 +108,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
     }
 
     @Override
-    public void onViewRecycled(TweetSelectImageHolder holder) {
+    public void onViewRecycled(SelectImageHolder holder) {
         Glide.clear(holder.mImage);
     }
 
@@ -170,29 +187,16 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
         public boolean isUpload;
     }
 
-    public interface Callback {
-        void onLoadMoreClick();
-
-        RequestManager getImgLoader();
-
-        /**
-         * Called when a view is requesting a start of a drag.
-         *
-         * @param viewHolder The holder of the view to drag.
-         */
-        void onStartDrag(RecyclerView.ViewHolder viewHolder);
-    }
-
     /**
-     * TweetSelectImageHolder
+     * SelectImageHolder
      */
-    static class TweetSelectImageHolder extends RecyclerView.ViewHolder implements PicturesPreviewerItemTouchCallback.ItemTouchHelperViewHolder {
+    static class SelectImageHolder extends RecyclerView.ViewHolder implements PicturesPreviewerItemTouchCallback.ItemTouchHelperViewHolder {
         private ImageView mImage;
         private ImageView mDelete;
         private ImageView mGifMask;
         private HolderListener mListener;
 
-        private TweetSelectImageHolder(View itemView, HolderListener listener) {
+        private SelectImageHolder(View itemView, HolderListener listener) {
             super(itemView);
             mListener = listener;
             mImage = (ImageView) itemView.findViewById(R.id.iv_content);
@@ -214,7 +218,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
                 public boolean onLongClick(View v) {
                     final HolderListener holderListener = mListener;
                     if (holderListener != null) {
-                        holderListener.onDrag(TweetSelectImageHolder.this);
+                        holderListener.onDrag(SelectImageHolder.this);
                     }
                     return true;
                 }
@@ -222,7 +226,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
             mImage.setBackgroundColor(0xffdadada);
         }
 
-        private TweetSelectImageHolder(View itemView, View.OnClickListener clickListener) {
+        private SelectImageHolder(View itemView, View.OnClickListener clickListener) {
             super(itemView);
 
             mImage = (ImageView) itemView.findViewById(R.id.iv_content);
@@ -278,7 +282,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
         interface HolderListener {
             void onDelete(SelectImageAdapter.Model model);
 
-            void onDrag(TweetSelectImageHolder holder);
+            void onDrag(SelectImageHolder holder);
         }
     }
 

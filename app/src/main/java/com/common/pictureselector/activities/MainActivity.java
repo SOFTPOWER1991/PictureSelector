@@ -3,7 +3,6 @@ package com.common.pictureselector.activities;
 import android.widget.Button;
 
 import com.common.pictureselector.R;
-import com.common.pictureselector.interf.PublishContract;
 import com.common.pictureselector.view.PicturesPreviewRecyclerView;
 
 import butterknife.BindView;
@@ -18,7 +17,7 @@ import butterknife.OnClick;
  * @email : zhanggengdyx@gmail.com
  * @date : 2016/12/17 10:33
  */
-public class MainActivity extends BaseActivity implements PublishContract.View {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.btn_insert_picture)
     Button btnInsertPic;
@@ -28,16 +27,6 @@ public class MainActivity extends BaseActivity implements PublishContract.View {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    public String[] getImages() {
-        return tweetPicturesPreviewer.getPaths();
-    }
-
-    @Override
-    public void setImages(String[] paths) {
-        tweetPicturesPreviewer.set(paths);
     }
 
     @OnClick(R.id.btn_insert_picture)

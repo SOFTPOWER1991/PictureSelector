@@ -34,6 +34,7 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
 
     private static final int RC_CAMERA_PERM = 0x03;
     private static final int RC_EXTERNAL_STORAGE = 0x04;
+
     public static final String KEY_CONFIG = "config";
 
     private static volatile Callback mCallbackSnapshot;
@@ -44,7 +45,7 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
     public PictureSelectorActivity() {
         Callback callback = mCallbackSnapshot;
         if (callback == null) {
-            throw new NullPointerException("PictureSelectorActivity's Callback isn't set null.");
+            throw new NullPointerException("PictureSelectorActivity's Callback can't be null.");
         }
         mCallback = callback;
         mCallbackSnapshot = null;
@@ -53,7 +54,7 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
 
     public static void showImage(Context context, int selectCount, boolean haveCamera, String[] selectedImages, Callback callBack) {
         if (callBack == null)
-            throw new NullPointerException("PictureSelectorActivity's Callback isn't set null.");
+            throw new NullPointerException("PictureSelectorActivity's Callback can't be null.");
 
         if (selectCount <= 0)
             throw new RuntimeException("SelectCount must >= 1");
@@ -131,6 +132,43 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
     }
 
     @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (requestCode == RC_EXTERNAL_STORAGE) {
+            removeView();
+            getConfirmDialog(this, "没有权限, 你需要去设置中开启读取手机存储权限.", "去设置", "取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(Settings.ACTION_APPLICATION_SETTINGS));
+                    finish();
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            }).show();
+        } else {
+            if (mView != null)
+                mView.onCameraPermissionDenied();
+            getConfirmDialog(this, "没有权限, 你需要去设置中开启相机权限.", "去设置", "取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(Settings.ACTION_APPLICATION_SETTINGS));
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            }).show();
+        }
+    }
+
+    @Override
     public void onBack() {
         onSupportNavigateUp();
     }
@@ -183,42 +221,6 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
         super.onDestroy();
     }
 
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
-        if (requestCode == RC_EXTERNAL_STORAGE) {
-            removeView();
-            getConfirmDialog(this, "没有权限, 你需要去设置中开启读取手机存储权限.", "去设置", "取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(Settings.ACTION_APPLICATION_SETTINGS));
-                    finish();
-                }
-            }, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            }).show();
-        } else {
-            if (mView != null)
-                mView.onCameraPermissionDenied();
-            getConfirmDialog(this, "没有权限, 你需要去设置中开启相机权限.", "去设置", "取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(Settings.ACTION_APPLICATION_SETTINGS));
-                }
-            }, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            }).show();
-        }
-    }
 
     private void removeView() {
         PictureSelectContact.View view = mView;

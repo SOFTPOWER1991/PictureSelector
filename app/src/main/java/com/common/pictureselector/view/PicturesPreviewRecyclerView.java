@@ -30,6 +30,7 @@ public class PicturesPreviewRecyclerView extends RecyclerView implements SelectI
     private SelectImageAdapter mImageAdapter;
     //itemtouch 用于完成拖动
     private ItemTouchHelper mItemTouchHelper;
+
     private RequestManager mCurImageLoader;
 
     public PicturesPreviewRecyclerView(Context context) {
