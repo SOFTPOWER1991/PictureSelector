@@ -14,7 +14,7 @@
         android:layout_margin="10dp"
         android:background="@color/colorPrimary"
         android:text="插入图片"
-        android:textColor="#ffffff" />
+        android:textColor="@color/white" />
 
 
     <com.common.pictureselector.view.PicturesPreviewRecyclerView

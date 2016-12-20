@@ -16,6 +16,9 @@ import com.common.pictureselector.interf.ImageLoaderListener;
  * 图片列表界面适配器
  */
 public class ImageAdapter extends BaseRecyclerAdapter<Image> {
+
+    private int TYPE_CAMERA = 0;
+    private int TYPE_ALBUM = 1;
     private ImageLoaderListener loader;
 
     public ImageAdapter(Context context, ImageLoaderListener loader) {
@@ -23,25 +26,27 @@ public class ImageAdapter extends BaseRecyclerAdapter<Image> {
         this.loader = loader;
     }
 
+
     @Override
     public int getItemViewType(int position) {
         Image image = getItem(position);
         if (image.getId() == 0)
-            return 0;
-        return 1;
+            return TYPE_CAMERA;
+        return TYPE_ALBUM;
     }
 
     @Override
     public void onViewRecycled(RecyclerView.ViewHolder holder) {
         if (holder instanceof ImageViewHolder) {
             ImageViewHolder h = (ImageViewHolder) holder;
+            //清除掉所有的图片加载请求
             Glide.clear(h.mImageView);
         }
     }
 
     @Override
     protected RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type) {
-        if (type == 0)
+        if (type == TYPE_CAMERA)
             return new CamViewHolder(mInflater.inflate(R.layout.item_list_cam, parent, false));
         return new ImageViewHolder(mInflater.inflate(R.layout.item_list_image, parent, false));
     }

@@ -22,12 +22,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (initBundle(getIntent().getExtras())) {
             getSupportActionBar().hide();
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            setContentView(getContentView());
+            setContentView(getLayoutId());
 
             initWindow();
 
             ButterKnife.bind(this);
-            initWidget();
+            initView();
             initData();
         } else {
             finish();
@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    protected abstract int getContentView();
+    protected abstract int getLayoutId();
 
     protected boolean initBundle(Bundle bundle) {
         return true;
@@ -54,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void initWindow() {
     }
 
-    protected void initWidget() {
+    protected void initView() {
     }
 
     protected void initData() {

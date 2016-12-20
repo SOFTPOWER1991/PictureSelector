@@ -53,7 +53,7 @@ import butterknife.OnClick;
  * @date : 2016/12/19 11:34
  */
 
-public class PictureSelectorFragment extends BaseFragment implements PictureSelectContact.View , BaseRecyclerAdapter.OnItemClickListener , ImageLoaderListener {
+public class PictureSelectorFragment extends BaseFragment implements PictureSelectContact.View, BaseRecyclerAdapter.OnItemClickListener, ImageLoaderListener {
 
 
     @BindView(R.id.rl_title)
@@ -171,7 +171,6 @@ public class PictureSelectorFragment extends BaseFragment implements PictureSele
     private void onSelectComplete() {
         handleResult();
     }
-
 
 
     @Override
@@ -417,11 +416,15 @@ public class PictureSelectorFragment extends BaseFragment implements PictureSele
     private void handleSelectSizeChange(int size) {
         if (size > 0) {
             mPreviewView.setEnabled(true);
+            mPreviewView.setTextColor(getResources().getColor(R.color.white));
             mDoneView.setEnabled(true);
+            mDoneView.setTextColor(getResources().getColor(R.color.white));
             mDoneView.setText(String.format("%s(%s)", getText(R.string.image_select_opt_done), size));
         } else {
             mPreviewView.setEnabled(false);
+            mPreviewView.setTextColor(getResources().getColor(R.color.color_939393));
             mDoneView.setEnabled(false);
+            mDoneView.setTextColor(getResources().getColor(R.color.color_939393));
             mDoneView.setText(getText(R.string.image_select_opt_done));
         }
     }

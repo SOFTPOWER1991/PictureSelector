@@ -96,7 +96,7 @@
             android:paddingRight="@dimen/lay_12"
             android:paddingTop="@dimen/lay_4"
             android:text="预览"
-            android:textColor="#ffffff"
+            android:textColor="@color/color_939393"
             android:textSize="14sp" />
 
         <Button
@@ -112,7 +112,7 @@
             android:paddingRight="@dimen/lay_12"
             android:paddingTop="@dimen/lay_4"
             android:text="完成"
-            android:textColor="#ffffff"
+            android:textColor="@color/color_939393"
             android:textSize="14sp" />
 
     </FrameLayout>

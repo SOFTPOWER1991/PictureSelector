@@ -18,14 +18,17 @@ import com.common.pictureselector.interf.PicturesPreviewerItemTouchCallback;
  * File Description  : 自定义recyclerview
  *
  * @author : zhanggeng
+ * @version : v1.0
+ *          **************修订历史*************
  * @email : zhanggengdyx@gmail.com
  * @date : 2016/12/19 21:55
- * @version     : v1.0
- * **************修订历史*************
  */
 
 public class PicturesPreviewRecyclerView extends RecyclerView implements SelectImageAdapter.Callback, PictureSelectorActivity.Callback {
+
+    //选中的图片适配器
     private SelectImageAdapter mImageAdapter;
+    //itemtouch 用于完成拖动
     private ItemTouchHelper mItemTouchHelper;
     private RequestManager mCurImageLoader;
 
@@ -47,9 +50,10 @@ public class PicturesPreviewRecyclerView extends RecyclerView implements SelectI
     private void init() {
         mImageAdapter = new SelectImageAdapter(this);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         this.setLayoutManager(layoutManager);
         this.setAdapter(mImageAdapter);
+        //去掉弧状阴影
         this.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         ItemTouchHelper.Callback callback = new PicturesPreviewerItemTouchCallback(mImageAdapter);

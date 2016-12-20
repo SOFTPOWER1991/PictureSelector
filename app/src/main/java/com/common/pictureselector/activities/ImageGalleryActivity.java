@@ -84,13 +84,13 @@ public class ImageGalleryActivity extends BaseActivity implements ViewPager.OnPa
     }
 
     @Override
-    protected int getContentView() {
+    protected int getLayoutId() {
         return R.layout.activity_image_gallery;
     }
 
     @Override
-    protected void initWidget() {
-        super.initWidget();
+    protected void initView() {
+        super.initView();
         setTitle("");
         mImagePager = (PreviewerViewPager) findViewById(R.id.vp_image);
         mIndexText = (TextView) findViewById(R.id.tv_index);

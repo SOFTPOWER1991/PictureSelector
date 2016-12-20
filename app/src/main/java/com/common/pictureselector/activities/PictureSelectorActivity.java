@@ -30,7 +30,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @date : 2016/12/17 10:33
  */
 
-public class PictureSelectorActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks , PictureSelectContact.Operator {
+public class PictureSelectorActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, PictureSelectContact.Operator {
 
     private static final int RC_CAMERA_PERM = 0x03;
     private static final int RC_EXTERNAL_STORAGE = 0x04;
@@ -44,7 +44,7 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
     public PictureSelectorActivity() {
         Callback callback = mCallbackSnapshot;
         if (callback == null) {
-            throw new NullPointerException("SelectImageActivity's Callback isn't set null.");
+            throw new NullPointerException("PictureSelectorActivity's Callback isn't set null.");
         }
         mCallback = callback;
         mCallbackSnapshot = null;
@@ -53,7 +53,7 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
 
     public static void showImage(Context context, int selectCount, boolean haveCamera, String[] selectedImages, Callback callBack) {
         if (callBack == null)
-            throw new NullPointerException("SelectImageActivity's Callback isn't set null.");
+            throw new NullPointerException("PictureSelectorActivity's Callback isn't set null.");
 
         if (selectCount <= 0)
             throw new RuntimeException("SelectCount must >= 1");
@@ -84,13 +84,13 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
     }
 
     @Override
-    protected int getContentView() {
+    protected int getLayoutId() {
         return R.layout.fragment_pictures_selector;
     }
 
     @Override
-    protected void initWidget() {
-        super.initWidget();
+    protected void initView() {
+        super.initView();
         requestExternalStorage();
     }
 
@@ -233,7 +233,6 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
             e.printStackTrace();
         }
     }
-
 
 
     public static class Config implements Serializable {
