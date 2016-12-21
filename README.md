@@ -4,7 +4,7 @@
 
 ## 效果图
 
-![selector0](./raw/png/selector0.png)
+<img src="./raw/png/selector0.png" width="50%" height="50%">
 
 ![selector1](https://github.com/SOFTPOWER1991/PictureSelector/blob/master/raw/png/selector1.png)
 
