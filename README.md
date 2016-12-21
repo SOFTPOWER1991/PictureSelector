@@ -4,11 +4,7 @@
 
 ## 效果图
 
-<img src="./raw/png/selector0.png" width="50%" height="50%">
-
-![selector1](https://github.com/SOFTPOWER1991/PictureSelector/blob/master/raw/png/selector1.png)
-
-![selector2](https://github.com/SOFTPOWER1991/PictureSelector/blob/master/raw/png/selector2.png)
+<img src="./raw/png/selector0.png" width="40%" height="40%"><img src="./raw/png/selector1.png" width="40%" height="40%"><img src="./raw/png/selector2.png" width="40%" height="40%">
 
 ##  首页已选择图片的预览界面
 
