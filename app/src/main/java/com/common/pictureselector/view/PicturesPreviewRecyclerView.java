@@ -70,8 +70,12 @@ public class PicturesPreviewRecyclerView extends RecyclerView implements SelectI
         mImageAdapter.notifyDataSetChanged();
     }
 
+    public String[] getPaths() {
+        return mImageAdapter.getPaths();
+    }
+
     @Override
-    public void onLoadMoreClick() {
+    public void onLoadAllPictures() {
         PictureSelectorActivity.showImage(getContext(), 9, true, mImageAdapter.getPaths(), this);
     }
 
@@ -86,10 +90,6 @@ public class PicturesPreviewRecyclerView extends RecyclerView implements SelectI
     @Override
     public void onStartDrag(ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
-    }
-
-    public String[] getPaths() {
-        return mImageAdapter.getPaths();
     }
 
     @Override

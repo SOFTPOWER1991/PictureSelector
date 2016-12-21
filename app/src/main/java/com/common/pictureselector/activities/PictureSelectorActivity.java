@@ -37,6 +37,10 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
 
     public static final String KEY_CONFIG = "config";
 
+    public  interface Callback {
+        void doSelectDone(String[] images);
+    }
+
     private static volatile Callback mCallbackSnapshot;
     private PictureSelectContact.View mView;
     private Callback mCallback;
@@ -106,7 +110,6 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
         return false;
     }
 
-
     @AfterPermissionGranted(RC_CAMERA_PERM)
     @Override
     public void requestCamera() {
@@ -132,9 +135,7 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
     }
 
     @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-
-    }
+    public void onPermissionsGranted(int requestCode, List<String> perms) {}
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
@@ -221,7 +222,6 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
         super.onDestroy();
     }
 
-
     private void removeView() {
         PictureSelectContact.View view = mView;
         if (view == null)
@@ -235,7 +235,6 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
             e.printStackTrace();
         }
     }
-
 
     public static class Config implements Serializable {
         private int selectCount;
@@ -265,9 +264,5 @@ public class PictureSelectorActivity extends BaseActivity implements EasyPermiss
         public void setSelectedImages(String[] selectedImages) {
             this.selectedImages = selectedImages;
         }
-    }
-
-    public static interface Callback {
-        void doSelectDone(String[] images);
     }
 }

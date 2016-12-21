@@ -3,6 +3,7 @@ package com.common.pictureselector.adapter;
 import android.content.Context;
 import android.os.Vibrator;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,17 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
     private final List<Model> mModels = new ArrayList<>();
 
     public interface Callback {
-        void onLoadMoreClick();
 
+        /**
+         * 加载设备上的所有图片
+         */
+        void onLoadAllPictures();
+
+        /**
+         * 获取图片加载器
+         *
+         * @return
+         */
         RequestManager getImgLoader();
 
         /**
@@ -91,7 +101,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
                 public void onClick(View v) {
                     Callback callback = mCallback;
                     if (callback != null) {
-                        callback.onLoadMoreClick();
+                        callback.onLoadAllPictures();
                     }
                 }
             });
@@ -185,6 +195,22 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
 
         public String path;
         public boolean isUpload;
+
+        public String getPath() {
+            return path;
+        }
+
+        public void setPath(String path) {
+            this.path = path;
+        }
+
+        public boolean isUpload() {
+            return isUpload;
+        }
+
+        public void setUpload(boolean upload) {
+            isUpload = upload;
+        }
     }
 
     /**
@@ -210,6 +236,7 @@ public class SelectImageAdapter extends RecyclerView.Adapter<SelectImageAdapter.
                     final HolderListener holderListener = mListener;
                     if (holderListener != null && obj != null && obj instanceof SelectImageAdapter.Model) {
                         holderListener.onDelete((SelectImageAdapter.Model) obj);
+                        Log.e(SelectImageAdapter.class.getSimpleName(), ((Model) obj).getPath());
                     }
                 }
             });

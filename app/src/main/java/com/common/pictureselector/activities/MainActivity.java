@@ -35,6 +35,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void openPictureSelector() {
-        tweetPicturesPreviewer.onLoadMoreClick();
+        tweetPicturesPreviewer.onLoadAllPictures();
     }
 }
