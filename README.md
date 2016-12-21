@@ -1,6 +1,15 @@
 
 # 图片选择器实现思路（参考微信，朋友圈图片选择器）
 
+
+## 效果图
+
+![selector0](https://github.com/SOFTPOWER1991/PictureSelector/blob/master/raw/png/selector0.png)
+
+![selector1](https://github.com/SOFTPOWER1991/PictureSelector/blob/master/raw/png/selector1.png)
+
+![selector2](https://github.com/SOFTPOWER1991/PictureSelector/blob/master/raw/png/selector2.png)
+
 ##  首页已选择图片的预览界面
 
   * recyclerview，点击后面的图片选择页面后把图片地址通过数组传递过来，然后加载rv上。
