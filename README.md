@@ -1,10 +1,25 @@
 
-# 图片选择器实现思路（参考微信，朋友圈图片选择器）
+# 图片选择器（参考QQ空间发空间图片选择器）
 
+## 要完成的功能
+
+* 点击加号跳转到图片选择页面
+* 点击图片选择页面的标题，可以跳转到具体的文件夹
+* 在图片选择页面点击选中图片，最多9张；
+* 点击完成后，回到选中的待插入的图片页面(可以删除)
+* 长按可以拖动图片的位置
+* 点击右上角X号，可以删除选中图片
 
 ## 效果图
 
-<img src="./raw/png/selector0.png" width="40%" height="40%"><img src="./raw/png/selector1.png" width="40%" height="40%"><img src="./raw/png/selector2.png" width="40%" height="40%">
+### 静态效果图
+
+<img src="./raw/png/selector0.png" width="30%" height="30%">
+<img src="./raw/png/selector1.png" width="30%" height="30%">
+<img src="./raw/png/selector2.png" width="30%" height="30%">
+
+
+# 实现思路
 
 ##  首页已选择图片的预览界面
 
@@ -17,10 +32,6 @@
 
 ### 预览item方形布局
 
-[自定义方形布局](http://blog.csdn.net/future_challenger/article/details/51346476)
-
-
-[MeasureSpec](https://jakkypan.gitbooks.io/trivial/content/measurespeczai_li_jie.html)
 
 ```
  @Override
@@ -32,8 +43,7 @@
 
 ### 首页图片预览器需要支持的功能
 
-* TODO: 动态设置每行显示几列，暴露出接口来
-
+* 动态设置每行显示几列，暴露出接口来，通过接口来设置
 
 ## 点击加号进入图片选择界面
 
