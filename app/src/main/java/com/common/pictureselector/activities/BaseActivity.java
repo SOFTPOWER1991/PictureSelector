@@ -11,7 +11,7 @@ import com.bumptech.glide.RequestManager;
 import butterknife.ButterKnife;
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity  {
     protected RequestManager mImageLoader;
     private boolean mIsDestroy;
 

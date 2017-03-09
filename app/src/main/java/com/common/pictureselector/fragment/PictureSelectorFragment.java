@@ -40,7 +40,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -56,24 +55,13 @@ import butterknife.OnClick;
 public class PictureSelectorFragment extends BaseFragment implements PictureSelectContact.View, BaseRecyclerAdapter.OnItemClickListener, ImageLoaderListener {
 
 
-    @BindView(R.id.rl_title)
     RelativeLayout mToolbar;
-
-    @BindView(R.id.icon_back)
     ImageView iconBack;
-    @BindView(R.id.btn_title_select)
     Button mSelectFolderView;
-
-    @BindView(R.id.iv_title_select)
     ImageView mSelectFolderIcon;
-
-    @BindView(R.id.rv_pic)
     RecyclerView mContentView;
-    @BindView(R.id.btn_preview)
     Button mPreviewView;
-    @BindView(R.id.btn_complete)
     Button mDoneView;
-    @BindView(R.id.fl_img_selector)
     RelativeLayout flImgSelector;
 
     private ImageFolderPopupWindow mFolderPopupWindow;
@@ -102,6 +90,15 @@ public class PictureSelectorFragment extends BaseFragment implements PictureSele
 
     @Override
     protected void initView(View view) {
+
+        mToolbar = findView(R.id.rl_title);
+        iconBack = findView(R.id.icon_back);
+        mSelectFolderIcon = findView(R.id.iv_title_select);
+        mContentView = findView(R.id.rv_pic);
+        mPreviewView = findView(R.id.btn_preview);
+        mDoneView = findView(R.id.btn_complete);
+        flImgSelector = findView(R.id.fl_img_selector);
+
         mContentView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mContentView.addItemDecoration(new SpaceGridItemDecoration((int) dipToPx(getResources(), 2)));
         mImageAdapter = new ImageAdapter(getContext(), this);

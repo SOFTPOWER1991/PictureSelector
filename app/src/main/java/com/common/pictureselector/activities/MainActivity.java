@@ -1,12 +1,10 @@
 package com.common.pictureselector.activities;
 
+import android.view.View;
 import android.widget.Button;
 
 import com.common.pictureselector.R;
 import com.common.pictureselector.view.PicturesPreviewRecyclerView;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * File Description  : 图片选择器首页
@@ -17,24 +15,38 @@ import butterknife.OnClick;
  * @email : zhanggengdyx@gmail.com
  * @date : 2016/12/17 10:33
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.btn_insert_picture)
-    Button btnInsertPic;
-    @BindView(R.id.recycler_images)
-    PicturesPreviewRecyclerView tweetPicturesPreviewer;
+    private Button btnInsertPic;
+
+    private PicturesPreviewRecyclerView tweetPicturesPreviewer;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
-    @OnClick(R.id.btn_insert_picture)
-    public void onClick() {
-        openPictureSelector();
+    @Override
+    protected void initView() {
+        super.initView();
+        btnInsertPic = (Button) findViewById(R.id.btn_insert_picture);
+        btnInsertPic.setOnClickListener(this);
+
+        tweetPicturesPreviewer = (PicturesPreviewRecyclerView) findViewById(R.id.recycler_images);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_insert_picture:
+                openPictureSelector();
+                break;
+        }
     }
 
     private void openPictureSelector() {
         tweetPicturesPreviewer.onLoadAllPictures();
     }
+
 }
