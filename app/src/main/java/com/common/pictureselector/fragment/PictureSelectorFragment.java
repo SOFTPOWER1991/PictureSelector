@@ -98,6 +98,7 @@ public class PictureSelectorFragment extends BaseFragment implements PictureSele
         mPreviewView = findView(R.id.btn_preview);
         mDoneView = findView(R.id.btn_complete);
         flImgSelector = findView(R.id.fl_img_selector);
+        mSelectFolderView = findView(R.id.btn_title_select);
 
         mContentView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mContentView.addItemDecoration(new SpaceGridItemDecoration((int) dipToPx(getResources(), 2)));
